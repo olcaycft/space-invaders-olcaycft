@@ -1,21 +1,49 @@
 using System;
+using Unity.Mathematics;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Projectile laserPrefab;
+    private bool isLaserActive;
+
     private float speed = 5f;
-    private Vector3 leftEdge;
-    private Vector3 rightEdge;
+    private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
+    private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
 
     private void Awake()
     {
-        leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Projectile.projectileHit += ChangeLaserActive;
     }
 
     private void Update()
     {
         PlayerSideMovement();
+        PlayerShooting();
+    }
+
+
+    private void PlayerShooting()
+    {
+        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
+        {
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        if (!isLaserActive)
+        {
+            Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            isLaserActive = true;
+        }
+    }
+
+    private void ChangeLaserActive()
+    {
+        isLaserActive = false;
     }
 
     private void PlayerSideMovement()

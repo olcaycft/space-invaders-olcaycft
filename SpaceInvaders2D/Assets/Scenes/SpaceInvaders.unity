@@ -269,6 +269,30 @@ MonoBehaviour:
   - {fileID: 6345257016712001413, guid: 7265e15cdabe3c54c9a2adc829020444, type: 3}
   rows: 5
   columns: 11
+  speed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.16633151
+      outSlope: -0.16633151
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.25523013
+    - serializedVersion: 3
+      time: 1
+      value: 0.05
+      inSlope: 0.019684242
+      outSlope: 0.019684242
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26359832
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &477663664
 Transform:
   m_ObjectHideFlags: 0
@@ -543,9 +567,10 @@ GameObject:
   - component: {fileID: 943411248}
   - component: {fileID: 943411247}
   - component: {fileID: 943411249}
+  - component: {fileID: 943411250}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,6 +666,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.625, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &943411250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943411246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d60a19915446b44a4ec2fa4cdb4304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: -5673800927270142289, guid: 8b0444b388debc7479a5ab9a6f84614e, type: 3}
 --- !u!1 &1199479109
 GameObject:
   m_ObjectHideFlags: 0

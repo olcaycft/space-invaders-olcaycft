@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Data;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -16,14 +17,21 @@ public class Invaders : MonoBehaviour
     private float height;
     private Vector2 center;
     private Vector3 direction = Vector2.right;
-    private float speed = 1f;
-    private Vector3 leftEdge;
-    private Vector3 rightEdge;
+    private Vector3 leftEdge=> Camera.main.ViewportToWorldPoint(Vector3.zero);
+    private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
+    
+    
+    [SerializeField]private AnimationCurve speed;
+
+    public int amountKilled { get; private set; }
+    public int totalInvaders => columns * rows;
+    public float percentKilled => (float)amountKilled / (float)totalInvaders;
+
+    public static event Action<float> speedChanged ;
 
     private void Awake()
     {
-        leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Invader.killed += InvaderKilled;
         SpawnAllInvaders();
         StartCoroutine(nameof(MoveInvaders));
     }
@@ -54,7 +62,7 @@ public class Invaders : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSeconds(speed.Evaluate(percentKilled));
             transform.position += direction * 1f;
             foreach (Transform invader in transform)
             {
@@ -63,14 +71,14 @@ public class Invaders : MonoBehaviour
                     continue;
                 }
 
-                if (direction == Vector3.right && invader.position.x >= (rightEdge.x-1f))
+                if (direction == Vector3.right && invader.position.x >= (rightEdge.x - 1f))
                 {
                     ChangeRowAndDirection();
                     var position = transform.position;
                     position.x -= 1f;
                     transform.position = position;
                 }
-                else if (direction == Vector3.left && invader.position.x <= (leftEdge.x+1f))
+                else if (direction == Vector3.left && invader.position.x <= (leftEdge.x + 1f))
                 {
                     ChangeRowAndDirection();
                     var position = transform.position;
@@ -87,5 +95,11 @@ public class Invaders : MonoBehaviour
         var position = transform.position;
         position.y -= 1f;
         transform.position = position;
+    }
+
+    private void InvaderKilled()
+    {
+        amountKilled++;
+        speedChanged?.Invoke(speed.Evaluate(percentKilled));
     }
 }
