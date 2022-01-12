@@ -1,50 +1,43 @@
 using System;
 using System.Collections;
-using System.Data;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
     public Invader[] prefabs;
+
     public int rows = 5;
     public int columns = 11;
-
+    private float width => 2f * (this.columns - 1);
+    private float height => 2f * (this.rows - 1);
+    private Vector2 center => new Vector2(-width / 2, -height / 2);
     private Vector3 rowPosition;
     private Vector3 invaderPosition;
 
-    private float width;
-    private float height;
-    private Vector2 center;
+
     private Vector3 direction = Vector2.right;
-    private Vector3 leftEdge=> Camera.main.ViewportToWorldPoint(Vector3.zero);
+    private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
     private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
-    
-    
-    [SerializeField]private AnimationCurve speed;
+
+    private int count = 0;
+
+    [SerializeField] private AnimationCurve speed;
 
     public int amountKilled { get; private set; }
     public int totalInvaders => columns * rows;
-    public float percentKilled => (float)amountKilled / (float)totalInvaders;
+    public float percentKilled => (float) amountKilled / (float) totalInvaders;
 
-    public static event Action<float> speedChanged ;
+    public static event Action<float> speedChanged;
 
     private void Awake()
     {
-        Invader.killed += InvaderKilled;
         SpawnAllInvaders();
         StartCoroutine(nameof(MoveInvaders));
-    }
-
-    private void Update()
-    {
+        Invader.killed += InvaderKilled;
     }
 
     private void SpawnAllInvaders()
     {
-        width = 2f * (columns - 1);
-        height = 2f * (rows - 1);
-        center = new Vector2(-width / 2, -height / 2);
         for (int row = 0; row < rows; row++)
         {
             rowPosition = new Vector3(center.x, center.y + (row * 2f), 0f);
@@ -64,6 +57,7 @@ public class Invaders : MonoBehaviour
         {
             yield return new WaitForSeconds(speed.Evaluate(percentKilled));
             transform.position += direction * 1f;
+
             foreach (Transform invader in transform)
             {
                 if (!invader.gameObject.activeInHierarchy)

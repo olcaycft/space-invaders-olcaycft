@@ -107,5 +107,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_03 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3642587013446688403, guid: 53333797875c0864189a6a63ea834972, type: 3}
+      propertyPath: m_TagString
+      value: Invader03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53333797875c0864189a6a63ea834972, type: 3}

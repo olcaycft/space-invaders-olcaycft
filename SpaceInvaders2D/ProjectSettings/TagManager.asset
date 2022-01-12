@@ -7,6 +7,10 @@ TagManager:
   - Laser
   - Invader
   - Missile
+  - Invader01
+  - Invader02
+  - Invader03
+  - MysteryShip
   layers:
   - Default
   - TransparentFX
