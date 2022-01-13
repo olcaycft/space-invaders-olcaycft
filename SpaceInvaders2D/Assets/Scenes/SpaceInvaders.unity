@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 170740485}
   m_Layer: 0
   m_Name: Bunker
-  m_TagString: Untagged
+  m_TagString: Bunker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -522,7 +522,9 @@ MonoBehaviour:
   - {fileID: 2711481048187077166, guid: 9c09d69d40c62084d81aa6f5caea5f4b, type: 3}
   - {fileID: 2711481048187077166, guid: 9c09d69d40c62084d81aa6f5caea5f4b, type: 3}
   - {fileID: 6345257016712001413, guid: 7265e15cdabe3c54c9a2adc829020444, type: 3}
+  missilePrefab: {fileID: 130312318090273167, guid: 218ae1cf3a2904b429b908fe21dec43b, type: 3}
   invaderMovement: {fileID: 8300000, guid: 6d34631cce6dd194a84f3a219d3e939f, type: 3}
+  missileAttackRate: 1
   rows: 5
   columns: 11
   speed:
@@ -659,7 +661,7 @@ GameObject:
   - component: {fileID: 618771207}
   m_Layer: 0
   m_Name: Bunker
-  m_TagString: Untagged
+  m_TagString: Bunker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -767,7 +769,7 @@ GameObject:
   - component: {fileID: 765702562}
   m_Layer: 0
   m_Name: Boundary
-  m_TagString: Untagged
+  m_TagString: BoundaryTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  playerHp: 0
+  playerHp: 3
   sfx: {fileID: 808286383}
 --- !u!82 &808286383
 AudioSource:
@@ -1077,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d60a19915446b44a4ec2fa4cdb4304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: -5673800927270142289, guid: 8b0444b388debc7479a5ab9a6f84614e, type: 3}
+  laserPrefab: {fileID: 335573221431199520, guid: 8b0444b388debc7479a5ab9a6f84614e, type: 3}
   shootSound: {fileID: 8300000, guid: b0af8a755870e8f45bc72b67a03df61f, type: 3}
 --- !u!1 &1199479109
 GameObject:
@@ -1092,7 +1094,7 @@ GameObject:
   - component: {fileID: 1199479112}
   m_Layer: 0
   m_Name: Bunker
-  m_TagString: Untagged
+  m_TagString: Bunker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1367,7 +1369,7 @@ GameObject:
   - component: {fileID: 1966416063}
   m_Layer: 0
   m_Name: Bunker
-  m_TagString: Untagged
+  m_TagString: Bunker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

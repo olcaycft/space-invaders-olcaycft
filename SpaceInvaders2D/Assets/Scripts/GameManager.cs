@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int score;
-    [SerializeField] private int playerHp;
+    [SerializeField] private int playerHp=3;
     [SerializeField]private AudioSource sfx;
 
     public void IncreaseScore(int scorePoint)

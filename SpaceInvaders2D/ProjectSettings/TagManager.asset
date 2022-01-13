@@ -11,6 +11,8 @@ TagManager:
   - Invader02
   - Invader03
   - MysteryShip
+  - BoundaryTop
+  - Bunker
   layers:
   - Default
   - TransparentFX

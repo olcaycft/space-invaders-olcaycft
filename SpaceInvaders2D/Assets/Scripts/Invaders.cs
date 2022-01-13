@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Invaders : MonoBehaviour
 {
     public Invader[] prefabs;
+    public Projectile missilePrefab;
     [SerializeField] private AudioClip invaderMovement;
+    [SerializeField] private float missileAttackRate = 1f;
 
     public int rows = 5;
     public int columns = 11;
@@ -14,7 +17,7 @@ public class Invaders : MonoBehaviour
     private Vector2 center => new Vector2(-width / 2, -height / 2);
     private Vector3 rowPosition;
     private Vector3 invaderPosition;
-    
+
     private Vector3 direction = Vector2.right;
     private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
     private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -24,6 +27,7 @@ public class Invaders : MonoBehaviour
     public int amountKilled { get; private set; }
     public int totalInvaders => columns * rows;
     public float percentKilled => (float) amountKilled / (float) totalInvaders;
+    public float amountAlive => this.totalInvaders - this.amountKilled;
 
     public static event Action<float> speedChanged;
 
@@ -31,6 +35,7 @@ public class Invaders : MonoBehaviour
     {
         SpawnAllInvaders();
         StartCoroutine(nameof(MoveInvaders));
+        StartCoroutine(nameof(MissileAttack));
         Invader.killed += InvaderKilled;
     }
 
@@ -48,6 +53,8 @@ public class Invaders : MonoBehaviour
             }
         }
     }
+
+    #region InvaderMovement
 
     private IEnumerator MoveInvaders()
     {
@@ -89,6 +96,30 @@ public class Invaders : MonoBehaviour
         position.y -= 1f;
         transform.position = position;
     }
+
+    #endregion
+
+    private IEnumerator MissileAttack()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(missileAttackRate);
+            foreach (Transform invader in transform)
+            {
+                if (!invader.gameObject.activeInHierarchy)
+                {
+                    continue;
+                }
+
+                if (Random.value < (1f / (float) amountAlive)) //for chance logic
+                {
+                    Instantiate(missilePrefab, invader.position, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+    }
+
 
     private void InvaderKilled()
     {

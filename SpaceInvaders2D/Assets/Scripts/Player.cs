@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Projectile.projectileHit += ChangeLaserActive;
+        Laser.playerProjectileHit += ChangeLaserActive;
     }
 
     private void Update()
