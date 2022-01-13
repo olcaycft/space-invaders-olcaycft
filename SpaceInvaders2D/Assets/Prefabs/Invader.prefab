@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites: []
-  animationTime: 1
+  invaderMovement: {fileID: 8300000, guid: 6d34631cce6dd194a84f3a219d3e939f, type: 3}
+  invaderKilled: {fileID: 8300000, guid: 209bdd87acd3b364d964bae9b18ab2f6, type: 3}

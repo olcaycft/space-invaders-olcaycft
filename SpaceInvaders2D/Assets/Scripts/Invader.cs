@@ -9,6 +9,8 @@ public class Invader : MonoBehaviour
     private int animationFrame;
     public static  event Action killed;
     
+    [SerializeField] private AudioClip invaderKilled;
+    
     private SpriteRenderer _spriteRenderer;
     private SpriteRenderer spriteRenderer => _spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -43,6 +45,7 @@ public class Invader : MonoBehaviour
         if (other.gameObject.CompareTag("Laser"))
         {
             killed?.Invoke();
+            //GameManager.Instance.PlaySfx(invaderKilled);
             gameObject.SetActive(false);
         }
     }

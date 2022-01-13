@@ -1,10 +1,12 @@
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int score;
     [SerializeField] private int playerHp;
+    [SerializeField]private AudioSource sfx;
 
     public void IncreaseScore(int scorePoint)
     {
@@ -28,4 +30,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Debug.Log("Game Over");
     }
+
+    public void PlaySfx(AudioClip clip) => sfx.PlayOneShot(clip);
 }

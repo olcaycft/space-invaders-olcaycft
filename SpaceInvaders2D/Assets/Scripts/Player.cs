@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Projectile laserPrefab;
     private bool isLaserActive;
+    
+    [SerializeField] private AudioClip shootSound;
 
     private float speed = 5f;
     private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
         if (!isLaserActive)
         {
             Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            //GameManager.Instance.PlaySfx(shootSound);
             isLaserActive = true;
         }
     }

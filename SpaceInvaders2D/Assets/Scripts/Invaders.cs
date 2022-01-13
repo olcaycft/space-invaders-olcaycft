@@ -5,6 +5,7 @@ using UnityEngine;
 public class Invaders : MonoBehaviour
 {
     public Invader[] prefabs;
+    [SerializeField] private AudioClip invaderMovement;
 
     public int rows = 5;
     public int columns = 11;
@@ -13,8 +14,7 @@ public class Invaders : MonoBehaviour
     private Vector2 center => new Vector2(-width / 2, -height / 2);
     private Vector3 rowPosition;
     private Vector3 invaderPosition;
-
-
+    
     private Vector3 direction = Vector2.right;
     private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
     private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -56,6 +56,7 @@ public class Invaders : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(speed.Evaluate(percentKilled));
+            //GameManager.Instance.PlaySfx(invaderMovement);
             transform.position += direction * 1f;
 
             foreach (Transform invader in transform)
