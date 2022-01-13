@@ -8,6 +8,7 @@ public class Invader : MonoBehaviour
     private float animationTime = 1f;
     private int animationFrame;
     public static  event Action killed;
+    //[SerializeField] private GameObject killedAnimationPrefab;
     
     [SerializeField] private AudioClip invaderKilled;
     
@@ -46,6 +47,7 @@ public class Invader : MonoBehaviour
         {
             killed?.Invoke();
             //GameManager.Instance.PlaySfx(invaderKilled);
+            //GameObject killedObj=Instantiate(killedAnimationPrefab,transform.position,Quaternion.identity);
             gameObject.SetActive(false);
         }
     }

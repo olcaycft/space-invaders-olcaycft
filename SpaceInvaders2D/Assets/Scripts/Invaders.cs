@@ -19,8 +19,6 @@ public class Invaders : MonoBehaviour
     private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
     private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
 
-    private int count = 0;
-
     [SerializeField] private AnimationCurve speed;
 
     public int amountKilled { get; private set; }
