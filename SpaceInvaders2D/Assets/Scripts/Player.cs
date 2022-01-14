@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip shootSound;
 
     private float speed = 5f;
-    private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
-    private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
+    private float leftEdgeX =>leftEdge.transform.position.x;
+    private float rightEdgeX =>rightEdge.transform.position.x;
 
     private void Awake()
     {
@@ -54,20 +56,20 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
-            if (transform.position.x <= leftEdge.x)
+            if (transform.position.x <= leftEdgeX)
             {
                 var position = transform.position;
-                position.x = rightEdge.x;
+                position.x = rightEdgeX;
                 transform.position = position;
             }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
-            if (transform.position.x >= rightEdge.x)
+            if (transform.position.x >= rightEdgeX)
             {
                 var position = transform.position;
-                position.x = leftEdge.x;
+                position.x = leftEdgeX;
                 transform.position = position;
             }
         }

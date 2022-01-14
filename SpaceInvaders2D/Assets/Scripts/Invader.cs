@@ -47,7 +47,6 @@ public class Invader : MonoBehaviour
         {
             killed?.Invoke();
             //GameManager.Instance.PlaySfx(invaderKilled);
-            //GameObject killedObj=Instantiate(killedAnimationPrefab,transform.position,Quaternion.identity);
             gameObject.SetActive(false);
         }
     }

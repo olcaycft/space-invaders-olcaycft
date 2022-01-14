@@ -5,12 +5,12 @@ using Random = UnityEngine.Random;
 
 public class Invaders : MonoBehaviour
 {
-    public Invader[] prefabs;
-    public Projectile missilePrefab;
+    [SerializeField] private Invader[] prefabs;
+    [SerializeField] private Projectile missilePrefab;
     [SerializeField] private AudioClip invaderMovement;
     [SerializeField] private float missileAttackRate = 1f;
 
-    public int rows = 5;
+    [SerializeField] public int rows = 5;
     public int columns = 11;
     private float width => 2f * (this.columns - 1);
     private float height => 2f * (this.rows - 1);
@@ -19,8 +19,10 @@ public class Invaders : MonoBehaviour
     private Vector3 invaderPosition;
 
     private Vector3 direction = Vector2.right;
-    private Vector3 leftEdge => Camera.main.ViewportToWorldPoint(Vector3.zero);
-    private Vector3 rightEdge => Camera.main.ViewportToWorldPoint(Vector3.right);
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
+    private float leftEdgeX =>leftEdge.transform.position.x;
+    private float rightEdgeX =>rightEdge.transform.position.x;
 
     [SerializeField] private AnimationCurve speed;
 
@@ -71,14 +73,14 @@ public class Invaders : MonoBehaviour
                     continue;
                 }
 
-                if (direction == Vector3.right && invader.position.x >= (rightEdge.x - 1f))
+                if (direction == Vector3.right && invader.position.x >= (rightEdgeX - 1f))
                 {
                     ChangeRowAndDirection();
                     var position = transform.position;
                     position.x -= 1f;
                     transform.position = position;
                 }
-                else if (direction == Vector3.left && invader.position.x <= (leftEdge.x + 1f))
+                else if (direction == Vector3.left && invader.position.x <= (leftEdgeX + 1f))
                 {
                     ChangeRowAndDirection();
                     var position = transform.position;
