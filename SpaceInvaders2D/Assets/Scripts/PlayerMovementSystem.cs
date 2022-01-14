@@ -16,7 +16,6 @@ public class PlayerMovementSystem : MonoBehaviour
     private void Awake()
     {
         playerInput = new JoystickController();
-        
     }
 
     private void OnEnable()
@@ -50,5 +49,6 @@ public class PlayerMovementSystem : MonoBehaviour
         {
             playerShooting?.Invoke();
         }
+        
     }
 }

@@ -10,10 +10,10 @@ public class Invaders : MonoBehaviour
     [SerializeField] private AudioClip invaderMovement;
     [SerializeField] private float missileAttackRate = 1f;
 
-    [SerializeField] public int rows = 5;
-    public int columns = 11;
-    private float width => 2f * (this.columns - 1);
-    private float height => 2f * (this.rows - 1);
+    [SerializeField] private int rows = 5;
+    [SerializeField] private int columns = 11;
+    private float width => 2f * (columns - 1);
+    private float height => 2f * (rows - 1);
     private Vector2 center => new Vector2(-width / 2, -height / 2);
     private Vector3 rowPosition;
     private Vector3 invaderPosition;
@@ -27,9 +27,9 @@ public class Invaders : MonoBehaviour
     [SerializeField] private AnimationCurve speed;
 
     public int amountKilled { get; private set; }
-    public int totalInvaders => columns * rows;
-    public float percentKilled => (float) amountKilled / (float) totalInvaders;
-    public float amountAlive => this.totalInvaders - this.amountKilled;
+    [SerializeField] private int totalInvaders => columns * rows;
+    [SerializeField] private float percentKilled => (float) amountKilled / (float) totalInvaders;
+    [SerializeField] private float amountAlive => this.totalInvaders - this.amountKilled;
 
     public static event Action<float> speedChanged;
 

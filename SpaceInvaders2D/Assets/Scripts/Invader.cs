@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
-    public Sprite[] animationSprites;
+    [SerializeField]private Sprite[] animationSprites;
     private float animationTime = 1f;
     private int animationFrame;
     public static  event Action killed;
